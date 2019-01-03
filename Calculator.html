@@ -1,0 +1,222 @@
+﻿<!-- Created by Adarsh -->
+<!doctype html>
+</html>
+<head>
+<title>Calculator </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+background-color:black;
+}
+h1 {
+text-align:center;
+color:red;
+}
+button {
+width:50px;
+height:50px;
+color=white;
+font-size:200%
+}
+ul {
+color:white;
+font-size:120%;
+}
+</style>
+<script>
+var n="";
+function numb(x)
+{
+n+=x;
+document.getElementById("screen").innerHTML=n;
+}
+function clrscr()
+{
+n=n.substring(0,(n.length)-1);
+document.getElementById("screen").innerHTML=n;
+}
+function sqrt()
+{
+if((n.lastIndexOf("+")==-1)&&(n.lastIndexOf("-")==-1)&&(n.lastIndexOf("%")==-1)&&(n.lastIndexOf("*")==-1)&&(n.lastIndexOf("/")==-1)&&(n.charAt((n.length)-1)!="."))
+{
+n=parseFloat(n);
+n=Math.sqrt(n);
+document.getElementById("screen").innerHTML=n;
+n=n.toString();
+}
+else
+{
+window.alert("ERROR");
+}
+}
+function ans()
+{
+var q1=0,q2=0,q3=0,q4=0,q5=0,p;
+for(p=0;p<n.length;p++)
+{
+if(n.charAt(p)=="+")
+q1++;
+if(n.charAt(p)=="-")
+q2++;
+if(n.charAt(p)=="*")
+q3++;
+if(n.charAt(p)=="/")
+q4++;
+if(n.charAt(p)=="%")
+q5++;
+}
+if(q1==0&&q2==0&&q3==0&&q4==0&&q5==0)
+window.alert("No operator included.");
+else if(q1==1&&q2==0&&q3==0&&q4==0&&q5==0)
+{
+var pos=n.lastIndexOf("+");
+if(pos!=0&&pos!=((n.length)-1))
+{
+var a1=n.substring(0,pos);
+a1=chk(a1);
+var a2=n.substring(pos+1);
+a2=chk(a2);
+a1=parseFloat(a1);
+a2=parseFloat(a2);
+n=a1+a2;
+document.getElementById("screen").innerHTML=n;
+n=n.toString();
+}
+}
+else if(q1==0&&q2==1&&q3==0&&q4==0&&q5==0)
+{
+var pos=n.lastIndexOf("-");
+if(pos!=0&&pos!=((n.length)-1))
+{
+var a1=n.substring(0,pos);
+a1=chk(a1);
+var a2=n.substring(pos+1);
+a2=chk(a2);
+a1=parseFloat(a1);
+a2=parseFloat(a2);
+n=a1-a2;
+document.getElementById("screen").innerHTML=n;
+n=n.toString();
+}
+}
+else if(q1==0&&q2==0&&q3==1&&q4==0&&q5==0)
+{
+var pos=n.lastIndexOf("*");
+if(pos!=0&&pos!=((n.length)-1))
+{
+var a1=n.substring(0,pos);
+a1=chk(a1);
+var a2=n.substring(pos+1);
+a2=chk(a2);
+a1=parseFloat(a1);
+a2=parseFloat(a2);
+n=a1*a2;
+document.getElementById("screen").innerHTML=n;
+n=n.toString();
+}
+}
+else if(q1==0&&q2==0&&q3==0&&q4==1&&q5==0)
+{
+var pos=n.lastIndexOf("/");
+if(pos!=0&&pos!=((n.length)-1))
+{
+var a1=n.substring(0,pos);
+a1=chk(a1);
+var a2=n.substring(pos+1);
+a2=chk(a2);
+a1=parseFloat(a1);
+a2=parseFloat(a2);
+n=a1/a2;
+document.getElementById("screen").innerHTML=n;
+n=n.toString();
+}
+}
+else if(q1==0&&q2==0&&q3==0&&q4==0&&q5==1)
+{
+var pos=n.lastIndexOf("%");
+if(pos!=0&&pos!=((n.length)-1))
+{
+var a1=n.substring(0,pos);
+a1=chk(a1);
+var a2=n.substring(pos+1);
+a2=chk(a2);
+a1=parseFloat(a1);
+a2=parseFloat(a2);
+n=a1%a2;
+document.getElementById("screen").innerHTML=n;
+n=n.toString();
+}
+}
+else
+window.alert("More than one operator are present.");
+}
+function chk(a)
+{
+var x, c1=0;
+for(x=0;x<a.length;x++)
+{
+if(a.charAt(x)==".")
+c1++;
+if(c1==2)
+break;
+}
+if(c1==0||c1==1)
+return a;
+else
+return (a.substring(0,x));
+}
+function chng(x)
+{
+x.style.color="red";
+}
+function chn(x)
+{
+x.style.color="black";
+}
+</script>
+</head>
+</body>
+<h1><b><ins>CALCULATOR</ins></b></h1>
+<br><br>
+<pre id="screen" style="color:white;text-align:center;font-size:200%"> </pre>
+<br><br>
+<div style="text-align:center">
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('+')">+</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('-')">-</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('*')">x</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('/')">/</button>
+</div>
+<div style="text-align:center">
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('9')">9</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('8')">8</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('7')">7</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="clrscr()">C</button>
+</div>
+<div style="text-align:center">
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('6')">6</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('5')">5</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('4')">4</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="sqrt()">&radic;</button>
+</div>
+<div style="text-align:center">
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('3')">3</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('2')">2</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('1')">1</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('%')">%</button>
+</div>
+<div style="text-align:center">
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('0')">0</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('.')">.</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="numb('00')">00</button>
+<button type="button" onmouseover="chng(this)" onmouseout="chn(this)" onclick="ans()">=</button>
+</div>
+<br><br>
+<p style="color:white; font-size:140%"><b><ins>Note :</ins></b><p>
+<ul>
+<li><i>Do not start a number with 0. JS could consider it to be an Octal number.</i></li>
+<li><i>Refresing the page will clear all the digits.</i></li>
+<li><i>If in a number, 2 or more than 2 decimals are present, that decimal with all the digits ahead of it will get removed.</i></li>
+</ul> 
+<body>
+</html>
