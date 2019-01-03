@@ -40,6 +40,7 @@ function sqrt()
 {
 if((n.lastIndexOf("+")==-1)&&(n.lastIndexOf("-")==-1)&&(n.lastIndexOf("%")==-1)&&(n.lastIndexOf("*")==-1)&&(n.lastIndexOf("/")==-1)&&(n.charAt((n.length)-1)!="."))
 {
+n=chk(n);  
 n=parseFloat(n);
 n=Math.sqrt(n);
 document.getElementById("screen").innerHTML=n;
